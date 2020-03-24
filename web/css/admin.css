@@ -1,0 +1,61 @@
+/*
+	colors:
+		pink - #fb33c9
+		lightpink - #cc99cc
+		vinous(бордовый) - (#910c61)
+		darkblue - #444466
+*/
+
+/* --------------- fonts --------------- */
+
+/* --------------- tags --------------- */
+
+/* --------------- id --------------- */
+body{
+	background-color: #333;
+}
+#admin-menu{
+	color: whitesmoke;
+}
+	#admin-menu h1, #admin-menu h2, #admin-menu h3, #admin-menu h4, #admin-menu h5{
+		color: white;
+	} 
+	#admin-menu a{
+		color: whitesmoke;
+	}
+	#admin-menu a:hover{
+		color: white;
+	}
+	#admin-menu a .fa{
+		margin-right: 10px;
+	}
+
+#admin-content{
+	background-color: white;
+}
+.img-wrapper{
+	position: relative;
+	display: inline-block;
+	height: 100px;
+	margin: 5px;
+	border: lightgray solid 1px;
+	padding: 2px;
+}
+	.img-wrapper .img-wrapper-remove{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		background-color: rgba(0,0,0,0.5);
+		color: whitesmoke;
+		font-size: 10px;
+		line-height: 13px;
+		cursor: pointer;
+		border: white solid 1px;
+	}
+	.img-wrapper .img-wrapper-remove:hover{
+		background-color: rgba(0,0,0,0.9);
+		color: white;
+	}
+	.img-wrapper > img{
+		height: 94px;
+	}

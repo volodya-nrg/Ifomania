@@ -1,0 +1,57 @@
+# кодировка по умолчанию
+AddDefaultCharset UTF-8
+
+DirectoryIndex index.php
+
+# переходить по ссылочным файлам
+Options +FollowSymlinks
+
+# не показывать листинг в пустой папке
+Options -Indexes
+
+#отдаем правильно файлы
+#XSendFile On
+
+#защищаем типы файлов
+<Files ~ "\.(htaccess|htpasswd|ini|fla|psd|log|sh)$">
+	order allow,deny
+	deny from all
+</Files>
+
+<ifModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	
+	# убираем последний слеш - уже работает
+	RewriteCond %{HTTP_HOST} (.*)
+	RewriteCond %{REQUEST_URI} /$ [NC]
+	RewriteRule ^(.*)(/)$ $1 [L,R=301]
+	
+	# редирект с www на без него
+#	RewriteCond %{HTTP_HOST} ^www.(.*) [NC]
+#	RewriteRule ^/?(.*) https://%1/$1 [L,R=permanent]
+
+	# для https откроем только некоторые страницы
+#	RewriteCond %{HTTPS} on
+#	RewriteCond %{THE_REQUEST} /pay-check [NC]
+#	RewriteRule ^https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#	RewriteCond %{SERVER_PORT} ^443$ [OR]
+#	RewriteCond %{HTTPS} =on
+#	RewriteCond %{REQUEST_URI} !^/pay-check$ [OR]
+#	RewriteCond %{REQUEST_URI} !^/pay-aviso$ [OR]
+#	RewriteRule ^.*$ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+	
+	#RewriteCond %{HTTPS} =on
+	#RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=301,L]
+
+	# RewriteCond %{HTTPS} on
+	# RewriteCond %{REQUEST_URI} !^/pay-success$
+	# RewriteRule (.*) https://i7.ifomania.ru/test [R=301,L]
+	# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+	# весь url перенаправляем на index.php
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ /index.php [L,QSA]
+</ifModule>
